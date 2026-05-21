@@ -1,0 +1,11 @@
+{
+  "name": "andrej-karpathy-skills",
+  "description": "减少大语言模型常见编码失误的行为准则，源自 Andrej Karpathy 对 LLM 编码陷阱的观察",
+  "version": "1.0.0",
+  "author": {
+    "name": "forrestchang"
+  },
+  "license": "MIT",
+  "keywords": ["guidelines", "best-practices", "coding", "karpathy", "中文", "多语言"],
+  "skills": ["./skills/karpathy-guidelines"]
+}

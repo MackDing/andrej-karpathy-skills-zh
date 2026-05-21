@@ -1,6 +1,6 @@
 ---
 name: karpathy-guidelines
-description: Claude Code 和 Cursor 可用的 Karpathy 编码准则中文版。用于 AI 编程、代码审查和重构，避免错误假设、过度复杂化、无关改动，并定义可验证的成功标准。
+description: Claude Code、Codex 和 Cursor 可用的 Karpathy 编码准则中文版。用于 AI 编程、代码审查和重构，避免错误假设、过度复杂化、无关改动，并定义可验证的成功标准。
 license: MIT
 ---
 

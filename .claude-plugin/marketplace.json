@@ -5,14 +5,14 @@
     "name": "MackDing"
   },
   "metadata": {
-    "description": "减少大语言模型常见编码失误的行为准则，源自 Andrej Karpathy 的观察",
+    "description": "Claude Code 和 Cursor 可用的 Karpathy 编码准则中文版，减少 AI 编程中的错误假设、过度工程化和无关改动",
     "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "andrej-karpathy-skills",
       "source": "./",
-      "description": "减少大语言模型常见编码失误的行为准则：编码前先思考、简洁优先、精准改动、目标驱动执行",
+      "description": "Claude Code / Cursor AI 编程规则：编码前先思考、简洁优先、精准改动、目标驱动执行",
       "version": "1.0.0",
       "author": {
         "name": "forrestchang"
@@ -22,8 +22,13 @@
         "best-practices",
         "coding",
         "karpathy",
+        "claude-code",
+        "cursor",
+        "ai-coding",
+        "llm",
+        "agent",
         "中文",
-        "多语言"
+        "ai编程"
       ],
       "category": "workflow"
     }

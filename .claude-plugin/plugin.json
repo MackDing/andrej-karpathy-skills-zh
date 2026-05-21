@@ -1,11 +1,11 @@
 {
   "name": "andrej-karpathy-skills",
-  "description": "减少大语言模型常见编码失误的行为准则，源自 Andrej Karpathy 对 LLM 编码陷阱的观察",
+  "description": "Claude Code 和 Cursor 可用的 Karpathy 编码准则中文版，用于减少 AI 编程中的错误假设、过度工程化和无关改动",
   "version": "1.0.0",
   "author": {
     "name": "forrestchang"
   },
   "license": "MIT",
-  "keywords": ["guidelines", "best-practices", "coding", "karpathy", "中文", "多语言"],
+  "keywords": ["claude-code", "cursor", "ai-coding", "llm", "agent", "guidelines", "best-practices", "coding", "karpathy", "中文", "ai编程"],
   "skills": ["./skills/karpathy-guidelines"]
 }

@@ -2,7 +2,7 @@
 
 一个单文件 `CLAUDE.md` 准则集，用来改善 Claude Code 的编码行为，源自 [Andrej Karpathy 对 LLM 编码陷阱的观察](https://x.com/karpathy/status/2015883857489522876)。
 
-[中文](./README.md) | [English](./README.en.md) | [简体中文（原版）](./README.zh.md)
+[中文](./README.md) | [English](./README.en.md) 
 
 ## 问题
 

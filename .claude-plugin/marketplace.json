@@ -5,14 +5,14 @@
     "name": "MackDing"
   },
   "metadata": {
-    "description": "Claude Code 和 Cursor 可用的 Karpathy 编码准则中文版，减少 AI 编程中的错误假设、过度工程化和无关改动",
+    "description": "Claude Code、Codex 和 Cursor 可用的 Karpathy 编码准则中文版，减少 AI 编程中的错误假设、过度工程化和无关改动",
     "version": "1.0.0"
   },
   "plugins": [
     {
       "name": "andrej-karpathy-skills",
       "source": "./",
-      "description": "Claude Code / Cursor AI 编程规则：编码前先思考、简洁优先、精准改动、目标驱动执行",
+      "description": "Claude Code / Codex / Cursor AI 编程规则：编码前先思考、简洁优先、精准改动、目标驱动执行",
       "version": "1.0.0",
       "author": {
         "name": "forrestchang"
@@ -23,6 +23,8 @@
         "coding",
         "karpathy",
         "claude-code",
+        "codex",
+        "agents-md",
         "cursor",
         "ai-coding",
         "llm",

@@ -1,11 +1,11 @@
 {
   "name": "andrej-karpathy-skills",
-  "description": "Claude Code 和 Cursor 可用的 Karpathy 编码准则中文版，用于减少 AI 编程中的错误假设、过度工程化和无关改动",
+  "description": "Claude Code、Codex 和 Cursor 可用的 Karpathy 编码准则中文版，用于减少 AI 编程中的错误假设、过度工程化和无关改动",
   "version": "1.0.0",
   "author": {
     "name": "forrestchang"
   },
   "license": "MIT",
-  "keywords": ["claude-code", "cursor", "ai-coding", "llm", "agent", "guidelines", "best-practices", "coding", "karpathy", "中文", "ai编程"],
+  "keywords": ["claude-code", "codex", "agents-md", "cursor", "ai-coding", "llm", "agent", "guidelines", "best-practices", "coding", "karpathy", "中文", "ai编程"],
   "skills": ["./skills/karpathy-guidelines"]
 }

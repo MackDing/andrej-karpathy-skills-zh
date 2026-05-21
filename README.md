@@ -1,166 +1,157 @@
-# Karpathy 启发的 Claude Code 准则
+# Andrej Karpathy 编码准则中文版：Claude Code / Cursor AI 编程规则
 
-一个单文件 `CLAUDE.md` 准则集，用来改善 Claude Code 的编码行为，源自 [Andrej Karpathy 对 LLM 编码陷阱的观察](https://x.com/karpathy/status/2015883857489522876)。
+面向中文开发者的 **Claude Code、Cursor、AI Agent 编程行为准则**。本仓库把 Andrej Karpathy 对 LLM 编码问题的观察整理成可直接使用的 `CLAUDE.md`、Cursor Rules 和 Claude Code Skill，帮助 AI 编程助手减少错误假设、过度工程化、无关改动和不可验证的实现。
 
-[中文](./README.md) | [English](./README.en.md) 
+如果你正在搜索 **Claude Code 中文规则、Cursor AI 编程规范、AI Agent coding guidelines、LLM 代码生成最佳实践、Karpathy 编程准则中文版**，这个仓库就是一套开箱即用的提示词和项目规则模板。
 
-## 问题
+## 适合谁使用
 
-来自 Andrej 的观察：
+- 使用 Claude Code、Cursor、Cline、Codex 或其他 AI 编程助手的开发者。
+- 希望减少“AI 擅自改代码”“越改越复杂”“没问清楚就实现”的团队。
+- 想把项目级 AI 编程规范沉淀为 `CLAUDE.md`、Cursor Rule 或 Skill 的工程团队。
+- 需要一份中文 AI Coding Prompt / Agent Rules / LLM Coding Guidelines 的个人开发者。
 
-> “模型会替你做出错误假设，然后不加检查地一路执行。它们不会管理自己的困惑，不会主动澄清，不会暴露不一致，不会呈现取舍，也不会在该反对时反对。”
+## 它解决什么问题
 
-> “它们非常喜欢把代码和 API 过度复杂化，让抽象膨胀，不清理死代码……明明 100 行能完成，却实现出 1000 行的臃肿结构。”
+来自 Andrej Karpathy 对 LLM 编码陷阱的观察：AI 编程助手常常会替用户做错误假设，不主动澄清，隐藏困惑，过度设计，顺手改无关代码，甚至删除自己没有充分理解的内容。
 
-> “它们有时仍会把自己并不充分理解的注释和代码改掉或删掉，即使那些内容与当前任务正交。”
+本仓库把这些问题收束为四条可执行原则：
 
-## 方案
+| 原则 | 解决的问题 | 对 AI 编程的价值 |
+|------|------------|------------------|
+| **编码前先思考** | 错误假设、隐藏困惑、缺少取舍说明 | 让 AI 先澄清，再实现 |
+| **简洁优先** | 过度复杂、抽象膨胀、提前设计 | 让代码更短、更直接、更易维护 |
+| **精准改动** | 无关编辑、顺手重构、误删代码 | 让 diff 更小，PR 更干净 |
+| **目标驱动执行** | 目标模糊、缺少验证、实现不可复现 | 让 AI 用测试和检查闭环完成任务 |
 
-把四项原则放进一个文件，直接针对这些问题：
+## 快速安装
 
-| 原则 | 解决的问题 |
-|------|------------|
-| **编码前先思考** | 错误假设、隐藏困惑、缺少取舍说明 |
-| **简洁优先** | 过度复杂、抽象膨胀 |
-| **精准改动** | 无关编辑、碰了不该碰的代码 |
-| **目标驱动执行** | 通过先测后改和可验证成功标准形成闭环 |
+### 方式一：Claude Code 插件
 
-## 四项原则详解
+在 Claude Code 中添加 marketplace：
+
+```text
+/plugin marketplace add MackDing/andrej-karpathy-skills-zh
+```
+
+安装插件：
+
+```text
+/plugin install andrej-karpathy-skills@karpathy-skills
+```
+
+### 方式二：直接使用 CLAUDE.md
+
+新项目：
+
+```bash
+curl -o CLAUDE.md https://raw.githubusercontent.com/MackDing/andrej-karpathy-skills-zh/main/CLAUDE.md
+```
+
+已有项目追加：
+
+```bash
+echo "" >> CLAUDE.md
+curl https://raw.githubusercontent.com/MackDing/andrej-karpathy-skills-zh/main/CLAUDE.md >> CLAUDE.md
+```
+
+### 方式三：Cursor 项目规则
+
+本仓库已经包含 Cursor 项目规则：
+
+```text
+.cursor/rules/karpathy-guidelines.mdc
+```
+
+把这个文件复制到你的项目 `.cursor/rules/` 目录中，即可让 Cursor 在该项目中自动应用同一套 AI 编程准则。
+
+## 四项核心准则
 
 ### 1. 编码前先思考
 
 **不要擅自假设。不要掩盖困惑。把取舍讲清楚。**
 
-LLM 经常会悄悄选择一种理解，然后直接开干。这条原则要求显式推理：
+LLM 经常会悄悄选择一种理解，然后直接开始写代码。正确做法是先暴露假设：
 
-- **明确说明假设**：不确定时询问，而不是猜。
-- **呈现多种理解**：有歧义时不要沉默地选一个。
-- **该提醒时提醒**：如果有更简单的方案，要说出来。
-- **困惑时停下**：说清楚哪里不明确，并请求澄清。
+- 明确说明当前假设，不确定时先问。
+- 如果存在多种理解，列出选项而不是默默选择。
+- 如果有更简单、更稳妥的方案，主动指出。
+- 如果上下文不足，先停下来说明哪里不清楚。
 
 ### 2. 简洁优先
 
 **用能解决问题的最少代码。不要做推测性设计。**
 
-对抗过度工程化倾向：
+AI 编程助手很容易把小需求写成大框架。这个准则要求：
 
 - 不实现需求之外的功能。
-- 不为只用一次的代码抽象一套框架。
-- 不添加未被要求的“灵活性”或“可配置性”。
-- 不为不可能发生的场景写错误处理。
-- 如果 200 行可以缩成 50 行，请重写。
-
-**检验标准：** 资深工程师会觉得这过度复杂吗？如果会，就简化。
+- 不为只用一次的代码抽象一套体系。
+- 不添加用户没有要求的配置项、扩展点和“灵活性”。
+- 如果 200 行可以缩成 50 行，就重写成 50 行。
 
 ### 3. 精准改动
 
 **只改必须改的地方。只清理你自己造成的问题。**
 
-编辑现有代码时：
+在真实项目中，AI 最大的风险之一是顺手改坏无关代码。这个准则要求：
 
-- 不顺手“改进”相邻代码、注释或格式。
-- 不重构没有坏掉的东西。
-- 匹配现有风格，即使你会用另一种写法。
-- 如果发现无关死代码，提出来，不要删除。
-
-当你的改动产生孤儿代码时：
-
-- 删除由你的改动导致未使用的 import、变量和函数。
-- 不删除改动前已经存在的死代码，除非用户明确要求。
-
-**检验标准：** 每一行变更都应该能直接追溯到用户请求。
+- 不顺手改相邻代码、注释或格式。
+- 不重构没有坏掉的模块。
+- 匹配项目既有风格，而不是强行套自己的偏好。
+- 每一行 diff 都能追溯到用户请求。
 
 ### 4. 目标驱动执行
 
 **定义成功标准。循环推进直到完成验证。**
 
-把命令式任务转化为可验证目标：
+不要只说“修复 bug”或“添加功能”，而是把任务变成可验证目标：
 
-| 不要只是说... | 转化为... |
-|---------------|-----------|
-| “添加校验” | “先为非法输入写测试，再让测试通过” |
-| “修复 bug” | “先写一个能复现 bug 的测试，再让它通过” |
-| “重构 X” | “确保重构前后测试都通过” |
+| 模糊指令 | 更好的 AI 编程目标 |
+|----------|-------------------|
+| 添加校验 | 先为非法输入写测试，再让测试通过 |
+| 修复 bug | 先写复现 bug 的测试，再实现修复 |
+| 重构模块 | 确保重构前后测试都通过 |
+| 优化性能 | 给出基线指标，再验证优化后的指标 |
 
-对于多步骤任务，先给出简短计划：
+## 仓库内容
 
-```
-1. [步骤] → 验证：[检查项]
-2. [步骤] → 验证：[检查项]
-3. [步骤] → 验证：[检查项]
-```
+| 文件 | 用途 |
+|------|------|
+| [`CLAUDE.md`](./CLAUDE.md) | Claude Code 项目级中文规则 |
+| [`CURSOR.md`](./CURSOR.md) | Cursor 使用说明 |
+| [`.cursor/rules/karpathy-guidelines.mdc`](./.cursor/rules/karpathy-guidelines.mdc) | Cursor 自动应用规则 |
+| [`skills/karpathy-guidelines/SKILL.md`](./skills/karpathy-guidelines/SKILL.md) | Claude Code Skill |
+| [`EXAMPLES.md`](./EXAMPLES.md) | 错误示例与正确示例对比 |
 
-强成功标准能让 LLM 独立循环推进。弱标准（“让它能用”）会导致不断澄清。
+## 推荐关键词
 
-## 安装
+Claude Code 中文规则、Cursor Rules 中文、AI 编程规范、AI Agent 编程准则、LLM Coding Guidelines、Karpathy Guidelines 中文版、Claude Code Skill、Cursor AI Rules、AI Coding Prompt、AI 代码生成最佳实践、提示词工程、Agentic Coding、AI 辅助编程、代码审查规则、项目级 CLAUDE.md。
 
-**选项 A：Claude Code 插件（推荐）**
+## FAQ
 
-在 Claude Code 中，先添加 marketplace：
-```
-/plugin marketplace add MackDing/andrej-karpathy-skills
-```
+### 这个仓库和普通提示词有什么不同？
 
-然后安装插件：
-```
-/plugin install andrej-karpathy-skills@karpathy-skills
-```
+它不是一句泛泛的“请写好代码”，而是一组面向真实工程场景的行为约束：先澄清、少抽象、少改动、可验证。它适合放进项目根目录，让 AI 编程助手在每次任务中持续遵守。
 
-这会把准则安装为 Claude Code 插件，让该 skill 可在所有项目中使用。
+### 可以用于 Cursor 吗？
 
-**选项 B：CLAUDE.md（按项目使用）**
+可以。本仓库包含 `.cursor/rules/karpathy-guidelines.mdc`，适合直接复制到 Cursor 项目的 `.cursor/rules/` 目录。
 
-新项目：
-```bash
-curl -o CLAUDE.md https://raw.githubusercontent.com/MackDing/andrej-karpathy-skills/main/CLAUDE.md
-```
+### 可以用于 Claude Code 吗？
 
-已有项目（追加）：
-```bash
-echo "" >> CLAUDE.md
-curl https://raw.githubusercontent.com/MackDing/andrej-karpathy-skills/main/CLAUDE.md >> CLAUDE.md
-```
+可以。你可以直接复制 `CLAUDE.md`，也可以通过 Claude Code 插件方式安装。
 
-## 与 Cursor 配合使用
+### 适合团队使用吗？
 
-本仓库包含已提交的 Cursor 项目规则（[`.cursor/rules/karpathy-guidelines.mdc`](.cursor/rules/karpathy-guidelines.mdc)），因此在 Cursor 中打开项目时也会应用同一套准则。安装方式、跨项目使用方式，以及它与 Claude Code 的关系，请查看 **[CURSOR.md](CURSOR.md)**。
+适合。团队可以在此基础上继续添加语言、框架、测试、代码审查、分支管理等项目专属规则。
 
-## 核心洞察
+### 为什么强调“少改动”？
 
-来自 Andrej：
-
-> “LLM 极其擅长循环推进，直到满足具体目标……不要告诉它该做什么，给它成功标准，然后看它执行。”
-
-“目标驱动执行”原则正是对这句话的落地：把命令式指令转化为带验证循环的声明式目标。
-
-## 如何判断它正在生效
-
-如果你看到这些现象，说明准则正在发挥作用：
-
-- **diff 中无关改动更少**：只出现被请求的改动。
-- **因过度复杂导致的返工更少**：第一次实现就更简单。
-- **澄清问题出现在实现之前**：而不是犯错之后。
-- **PR 更干净、更小**：没有顺手重构或“顺手优化”。
-
-## 自定义
-
-这些准则适合与项目专属说明合并。你可以把它们加入现有 `CLAUDE.md`，也可以创建新的说明文件。
-
-项目专属规则可以这样添加：
-
-```markdown
-## 项目专属准则
-
-- 使用 TypeScript strict mode
-- 所有 API endpoint 必须有测试
-- 遵循 `src/utils/errors.ts` 中现有的错误处理模式
-```
+AI 编程最大的成本往往不是写不出代码，而是改了不该改的地方。精准改动能降低 review 成本，也能减少隐藏回归。
 
 ## 取舍说明
 
-这些准则偏向 **谨慎胜过速度**。对于简单任务（拼写修复、明显的一行改动），请结合实际判断，不是每次改动都需要完整流程。
-
-目标是减少非平凡工作中的高成本错误，而不是拖慢简单任务。
+这套准则偏向 **谨慎胜过速度**。对于拼写修复、明显的一行改动等简单任务，可以轻量执行；对于涉及生产代码、共享模块、重构、bug 修复和用户可见行为的任务，建议严格遵守。
 
 ## 许可证
 

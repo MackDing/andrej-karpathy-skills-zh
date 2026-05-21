@@ -1,6 +1,6 @@
 ---
 name: karpathy-guidelines
-description: 减少大语言模型常见编码失误的行为准则。用于编写、审查或重构代码，避免过度复杂化，保持精准改动，显式说明假设，并定义可验证的成功标准。
+description: Claude Code 和 Cursor 可用的 Karpathy 编码准则中文版。用于 AI 编程、代码审查和重构，避免错误假设、过度复杂化、无关改动，并定义可验证的成功标准。
 license: MIT
 ---
 

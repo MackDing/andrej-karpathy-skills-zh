@@ -1,0 +1,31 @@
+{
+  "name": "karpathy-skills",
+  "id": "karpathy-skills",
+  "owner": {
+    "name": "MackDing"
+  },
+  "metadata": {
+    "description": "减少大语言模型常见编码失误的行为准则，源自 Andrej Karpathy 的观察",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "andrej-karpathy-skills",
+      "source": "./",
+      "description": "减少大语言模型常见编码失误的行为准则：编码前先思考、简洁优先、精准改动、目标驱动执行",
+      "version": "1.0.0",
+      "author": {
+        "name": "forrestchang"
+      },
+      "keywords": [
+        "guidelines",
+        "best-practices",
+        "coding",
+        "karpathy",
+        "中文",
+        "多语言"
+      ],
+      "category": "workflow"
+    }
+  ]
+}
